@@ -141,7 +141,7 @@ elif selected == "About":
     for i in range(5):
         st.write("\n")    
     
-    st.write("Solely for use at Lilly Centre for Clinical Phramcology Trials @ Synapse 2023 March, Version I")
+    st.write("Solely for use at Lilly Centre for Clinical Phramcology Trials @ Synapse 2023 March, Version II")
     st.write("Created by Zachery Lee Wei Quan using Streamlit and hosted on Streamlit Community Cloud")
     
     
