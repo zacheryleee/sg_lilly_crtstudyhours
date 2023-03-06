@@ -14,7 +14,6 @@ decorator==5.1.1
 entrypoints==0.4
 et-xmlfile==1.1.0
 executing==1.2.0
-Flask==2.2.3
 gitdb==4.0.10
 GitPython==3.1.31
 idna==3.4
