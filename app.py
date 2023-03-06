@@ -117,7 +117,7 @@ selected = option_menu(
     orientation = "horizontal",
 )
 
-# Depending on which page is chosen
+# Depending on which page is chosen 
 if selected == "Home":
 
     st.title("\U0001F4C8 CRT Hours and Study Allocated \U0001F4C9")
