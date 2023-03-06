@@ -104,8 +104,6 @@ def main(files):
     st.write()
     st.write("="*60)
     st.write(f''' We are done with a total of {len(excel_files)} excel files \U0001F601 ''')
-  else:
-    st.write("\nThere are no excel files in the folder path you just entered. Please check again!!!")
   return 
 
 #Initialize with Menu Bar 
@@ -145,7 +143,7 @@ elif selected == "About":
     
     st.write("Solely for use at Lilly Centre for Clinical Phramcology Trials @ Synapse 2023 March, Version I")
     st.write("Created by Zachery Lee Wei Quan using Streamlit and hosted on Streamlit Community Cloud")
-    st.write("All rights reserved")
+    
     
     
 
