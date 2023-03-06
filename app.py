@@ -8,6 +8,7 @@ import os
 import glob
 from streamlit_option_menu import option_menu
 
+
 #Functions
 # Start row for all CRTA (CRT & Extended Role CRT)
 def start_row(worksheet):
@@ -109,16 +110,16 @@ def main(files):
 #Initialize with Menu Bar 
 selected = option_menu(
     menu_title = None, 
-    options = ["Home", "About"],
-    icons = ["house-fill", "question-circle-fill"],
+    options = ["Home", "Demo", "About"],
+    icons = ["house-fill", "camera-video-fill", "question-circle-fill"],
     menu_icon = "cast",
     default_index = 0, 
     orientation = "horizontal",
 )
 
+# Depending on which page is chosen
 if selected == "Home":
 
-    #st.set_page_config(page_title = "CRT Hours Tabulator")
     st.title("\U0001F4C8 CRT Hours and Study Allocated \U0001F4C9")
     st.subheader("Input Excel Files")
 
@@ -130,7 +131,15 @@ if selected == "Home":
     if uploaded_files:
         main(uploaded_files)
 
+elif selected == "Demo":
+    st.title("Demo Video")
+    video_file = open("demo.mp4", "rb")
+    video_bytes = video_file.read()
+    
+    st.video(video_bytes)
+    
 elif selected == "About":
+    st.title("About")
     st.write("""
             ## Note 
             1. Input are excel files in .xlsx format with dates that are not in the desired month removed first (Preprocess excel files by removing the entire column)
