@@ -1,3 +1,4 @@
+# Importing the necessary packages
 import streamlit as st
 import openpyxl 
 import pandas as pd 
@@ -6,6 +7,8 @@ import datetime
 import os 
 import glob
 
+#Functions
+# Start row for all CRTA (CRT & Extended Role CRT)
 def start_row(worksheet):
     for row in worksheet.iter_rows():
         for cell in row:
@@ -14,6 +17,7 @@ def start_row(worksheet):
                 
     return start_row
 
+# All CRT & Extended Role CRT namelist and cell id
 def crt_names(worksheet):
     crt_names = {}
     for row in worksheet.iter_rows(min_row=(start_row(worksheet))+1, min_col=0, max_col=1 ):
@@ -22,6 +26,7 @@ def crt_names(worksheet):
                 crt_names[cell.value] = cell 
     return crt_names
 
+# Converting the time to datetime format 
 def time_format(time):
     hours = int(time)
     minutes = int((time - hours) * 100)
@@ -30,6 +35,7 @@ def time_format(time):
     
     return time_obj
 
+# Finding the total hours, if shift is more than 7 hours, a mandatory 1 hour break is given 
 def time_in_hours(timing):
     list_hour = []
     for i in range(0,len(timing),2):
@@ -53,6 +59,7 @@ def time_in_hours(timing):
     
     return list_hour
 
+#To evenly distribute the total number of hours worked to all the studies allocated 
 def crt_hours_dict(worksheet):
     study_hour_dict = {}
     crt = crt_names(worksheet)
@@ -77,7 +84,8 @@ def crt_hours_dict(worksheet):
                     study_hour_dict[s] = timing[i]/(len(list_of_studies))
     
     return study_hour_dict
-  
+ 
+# Main function 
 def main(files):
   excel_files = files
   st.write()
@@ -99,6 +107,7 @@ def main(files):
     st.write("\nThere are no excel files in the folder path you just entered. Please check again!!!")
   return 
 
+#Initiatilzing the web application
 st.set_page_config(page_title = "CRT Hours Tabulator")
 st.title("\U0001F4C8 CRT Hours and Study Allocated \U0001F4C9")
 st.subheader("Input Excel Files")
