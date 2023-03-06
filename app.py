@@ -1,8 +1,3 @@
-import subprocess
-
-cmd = "pip install -r requirement.txt"
-subprocess.call(cmd, shell=True)
-
 import streamlit as st
 import openpyxl 
 import pandas as pd 
