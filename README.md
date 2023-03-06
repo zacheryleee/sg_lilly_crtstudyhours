@@ -9,4 +9,9 @@ The repository here tabulates the total number of hours allocated for each study
 <br>
 <br>
 
+Link to webpage: https://sglilly-crt-studyhours-allocation.streamlit.app/ 
+<br> 
+
 ###### Solely for use at Lilly Centre for Clinical Phramcology Trials @ Synapse <br> Created by Zachery Lee Wei Quan using Streamlit and hosted on Streamlit Community Cloud <br> 2023 March, Version I <br> All rights reserved
+
+
