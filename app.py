@@ -5,6 +5,7 @@ from itertools import islice
 import datetime
 import os 
 import glob
+from streamlit_option_menu import option_menu
 
 def start_row(worksheet):
     for row in worksheet.iter_rows():
@@ -99,17 +100,43 @@ def main(files):
     st.write("\nThere are no excel files in the folder path you just entered. Please check again!!!")
   return 
 
-st.set_page_config(page_title = "CRT Hours Tabulator")
-st.title("\U0001F4C8 CRT Hours and Study Allocated \U0001F4C9")
-st.subheader("Input Excel Files")
 
-st.write("\u2757 Please remember to remove date columns that are out of the month of interest first before running \u2757")
+selected = option_menu(
+    menu_title = None, 
+    options = ["Home", "About"],
+    icons = ["house-fill", "question-circle-fill"],
+    menu_icon = "cast",
+    default_index = 0, 
+    orientation = "horizontal",
+)
 
-uploaded_files = st.file_uploader("Choose the Excel Files to Upload (.xlsx)", 
-                                  type ="xlsx", accept_multiple_files=True)
+if selected == "Home":
 
-if uploaded_files:
-    main(uploaded_files)
+    #st.set_page_config(page_title = "CRT Hours Tabulator")
+    st.title("\U0001F4C8 CRT Hours and Study Allocated \U0001F4C9")
+    st.subheader("Input Excel Files")
+
+    st.write("\u2757 Please remember to remove date columns that are out of the month of interest first before running \u2757")
+
+    uploaded_files = st.file_uploader("Choose the Excel Files to Upload (.xlsx)", 
+                                    type ="xlsx", accept_multiple_files=True)
+
+    if uploaded_files:
+        main(uploaded_files)
+
+elif selected == "About":
+    st.write("""
+            ## Note 
+            1. Input are excel files in .xlsx format with date that are not in the desired month removed first (Preprocess excel files by removing the entire column)
+            2. Only CRT and CRTA are tabulated with study hours evenly distributed to studies allocated (delimited by "/")
+            3. For shifts more than 7 hours, an hour break is mandatory and subtracted from the total hours 
+            """)
+
+    for i in range(5):
+        st.write("\n")    
     
-    
+    st.write("Solely for use at Lilly Centre for Clinical Phramcology Trials @ Synapse 2023 March, Version I")
+    st.write("Created by Zachery Lee Wei Quan using Streamlit and hosted on Streamlit Community Cloud")
+    st.write("All rights reserved")
+
 
