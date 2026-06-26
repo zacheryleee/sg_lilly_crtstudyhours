@@ -133,7 +133,7 @@ def main(files):
     
     st.write()
     st.write("="*60)
-    st.subheader(f'''Total from the {excel_files}''')
+    st.subheader(f'''Total from {excel_files}''')
     for key, value in total_dict.items():
         st.write(key, ":", value)
     st.write()
