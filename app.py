@@ -117,6 +117,7 @@ def extract_study_codes(study_text, worksheet):
 # Main function 
 def main(files):
   excel_files = files
+  total_dict = {}  
   st.write()
   if len(excel_files) > 0:
     for file_ in excel_files:
@@ -127,10 +128,14 @@ def main(files):
       st.write(f'''Now tabulating for this excel roster: {file_.name}''',"\n")
       for key, value in results.items():
         st.write(key, ":", value)
+        total_dict[key] = total_dict.get(key, 0) + value  
       st.write()
     
     st.write()
     st.write("="*60)
+    for key, value in total_dict.items():
+        st.write(key, ":", value)
+    st.write()
     st.write(f''' We are done with a total of {len(excel_files)} excel files \U0001F601 ''')
   return 
 
