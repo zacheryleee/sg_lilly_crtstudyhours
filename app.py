@@ -170,13 +170,13 @@ elif selected == "About":
     st.write("""
             ## Note 
             1. Input are excel files in .xlsx format with dates that are not in the desired month removed first (Preprocess excel files by removing the entire column)
-            2. Only CRTA are tabulated with study hours evenly distributed to studies allocated (delimited by "/")
+            2. Only CRTA are tabulated with study hours evenly distributed to studies allocated as determined by the studies at the top
             3. For shifts more than or equal to 7 hours, an hour break is mandatory and subtracted from the total hours 
             """)
 
     for i in range(5):
         st.write("\n")    
     
-    st.write("Solely for use at Lilly Centre for Clinical Phramcology Trials @ Synapse 2023 March, Version II")
+    st.write("Solely for use at Lilly Centre for Clinical Phramcology Trials @ Synapse 2026 June, Version 2.0")
     st.write("Created by Zachery Lee Wei Quan using Streamlit and hosted on Streamlit Community Cloud")
     
