@@ -6,6 +6,8 @@ from itertools import islice
 import datetime
 import os 
 import glob
+import re
+from difflib import get_close_matches
 from streamlit_option_menu import option_menu
 
 
@@ -76,7 +78,7 @@ def crt_hours_dict(worksheet):
         studies= [x for x in sliced_worksheet[1] if x is not None]
         
         for i, study in enumerate(studies):
-            list_of_studies = study.split("/")
+            list_of_studies = extract_study_codes(study, worksheet)
             list_of_studies = [substring.strip() for substring in list_of_studies]
             
             for s in list_of_studies: 
@@ -86,7 +88,32 @@ def crt_hours_dict(worksheet):
                     study_hour_dict[s] = timing[i]/(len(list_of_studies))
     
     return study_hour_dict
- 
+
+# This function is to find the row number of the keyword in the excel sheet
+def row_identifier(worksheet, keyword):
+    for row in worksheet.iter_rows():
+        for cell in row:
+            if cell.value == str(keyword):
+                start_row_studies = cell.row
+                
+    return start_row_studies
+
+# This function is to find the names of the studies in the excel sheet
+def study_names(worksheet):
+    study_names_unique = {"GS"}
+    for row in worksheet.iter_rows(min_row=(row_identifier(worksheet, "Studies"))+1, max_row=row_identifier(worksheet, "AM GS")-1, min_col=0, max_col=1 ):
+        for cell in row:
+            if isinstance(cell.value, str):
+                study_names_unique.add(cell.value.split(" ")[0])
+    return study_names_unique
+
+# This function is to extract the study codes from the study text and check if they are in the list of study names
+def extract_study_codes(study_text, worksheet):
+    study_keys = study_names(worksheet)
+    matches = [code for code in re.findall(r'[A-Z]{2,5}', study_text.upper()) if code in study_keys]
+    return matches
+
+
 # Main function 
 def main(files):
   excel_files = files
